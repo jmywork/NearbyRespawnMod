@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: nearbyrespawn
+Specification-Vendor: DeceasedCraft
+Specification-Version: 1
+Implementation-Title: nearbyrespawn
+Implementation-Version: 1.0.3
+Implementation-Vendor: DeceasedCraft
+Implementation-Timestamp: 2026-09-27T12:39:53+0800
+

@@ -1,0 +1,52 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+}
+
+version = '1.0.3'
+group = 'com.deceased.nearbyrespawn'
+archivesBaseName = 'nearbyrespawn'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+// Source files are UTF-8 (config comments contain Chinese text). Without this, javac on a
+// Chinese Windows defaults to GBK and compilation fails with "unmappable character" errors.
+compileJava.options.encoding = 'UTF-8'
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                nearbyrespawn {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.10'
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "nearbyrespawn",
+                "Specification-Vendor"    : "DeceasedCraft",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.version,
+                "Implementation-Vendor"   : "DeceasedCraft",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+jar.finalizedBy('reobfJar')
